@@ -21,8 +21,10 @@ class HomeController extends Controller
         list(, $fileData) = explode(',', $fileData);
         $fileData = base64_decode($fileData);
 
-        $imageName = time() . '.' . $extension;
+        $imageName = 'images/' .time() . '.' . $extension;
 
-        file_put_contents('images/' . $imageName, $fileData);
+        file_put_contents($imageName, $fileData);
+
+        echo $imageName;
     }
 }

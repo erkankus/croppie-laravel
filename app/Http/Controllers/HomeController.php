@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -13,15 +14,15 @@ class HomeController extends Controller
 
     public function postIndex(Request $request)
     {
-        dd($request->file('file_photo'));
+        $fileData = $request->get('profile_photo');
 
-        $data = $request->get('image');
+        list($type, $fileData) = explode(';', $fileData);
+        $extension = explode('/', $type)[1];
+        list(, $fileData) = explode(',', $fileData);
+        $fileData = base64_decode($fileData);
 
-        list($type, $data) = explode(';', $data);
-        list(, $data) = explode(',', $data);
-        $data = base64_decode($data);
-        $imageName = time() . '.png';
+        $imageName = time() . '.' . $extension;
 
-        file_put_contents('images/' . $imageName, $data);
+        file_put_contents('images/' . $imageName, $fileData);
     }
 }

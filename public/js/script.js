@@ -44,13 +44,15 @@ $('.item-img').on('change', function () {
 });
 $('#cropImageBtn').on('click', function (ev) {
     $uploadCrop.croppie('result', {
-        type: 'canvas',
+        type: 'base64',
         format: 'jpg',
         size: {width: 100, height: 130}
     }).then(function (resp) {
         $('#item-img-output').attr('src', resp);
 
-        $('.profile-photo-btn').click();
+        $('.profile-photo').attr('value', resp);
+
+        $('.profile-photo-btn').trigger('click');
 
         $('#cropImagePop').modal('hide');
     });

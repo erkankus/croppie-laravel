@@ -19,6 +19,7 @@
                         </figure>
                         <form action="/" method="POST" enctype="multipart/form-data">
                             <input type="file" class="item-img file center-block" name="file_photo"/>
+                            <input type="hidden" class="profile-photo" name="profile_photo"/>
                             <br>
                             <br>
                             <input type="submit" name="save" value="Save" class="profile-photo-btn hidden"/>
